@@ -27,8 +27,13 @@ RCT_EXPORT_MODULE();
 }
 
 //Exports a method called createCalendarEvent
-RCT_EXPORT_METHOD(createCalendarEvent:(NSString *)name location:(NSString *)location)
+RCT_EXPORT_METHOD(createCalendarEvent:(NSString *)name
+                  location:(NSString *)location
+                  callback:(RCTResponseSenderBlock)callback )
 {
+  NSInteger eventId = 555;
+  callback(@[@(eventId)]);
+  
   RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);
 }
 
