@@ -29,10 +29,15 @@ RCT_EXPORT_MODULE();
 //Exports a method called createCalendarEvent
 RCT_EXPORT_METHOD(createCalendarEvent:(NSString *)name
                   location:(NSString *)location
-                  callback:(RCTResponseSenderBlock)callback )
+                  errorCallback:(RCTResponseSenderBlock)errorCallback
+                  successCallback:(RCTResponseSenderBlock)successCallback)
 {
-  NSInteger eventId = 555;
-  callback(@[@(eventId)]);
+  @try {
+    NSNumber *eventId = [NSNumber numberWithInt:555];
+    successCallback(@[eventId]);
+  } @catch (NSException *exception) {
+    errorCallback(@[exception]);
+  }
   
   RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);
 }
